@@ -120,45 +120,93 @@ Ici, le premier `Container` occupera deux fois plus d'espace que le second grâc
 
 ## Widget Checkbox dans Flutter
 
-Le widget `Checkbox` dans Flutter permet de créer une case à cocher interactive. Il est souvent utilisé dans les formulaires pour permettre à l'utilisateur de sélectionner ou désélectionner une option.
+Le widget `Checkbox` dans Flutter permet d'afficher une case à cocher interactive. Il est très utilisé dans les formulaires pour permettre à l'utilisateur de sélectionner ou désélectionner une ou plusieurs options. La Checkbox peut être utilisée seule ou dans une liste.
 
-### Exemple de base
+### Utilisation de base
+
+Voici comment afficher une simple case à cocher :
 
 ```dart
 bool _isChecked = false;
 
 Checkbox(
   value: _isChecked,
-  onChanged: (bool value) {
+  onChanged: (bool? value) {
     setState(() {
-      _isChecked = value;
+      _isChecked = value!;
     });
   },
 )
 ```
 
-### Personnalisation
+### Checkbox avec texte descriptif
 
-- **value** : État actuel de la case à cocher (true/false).
-- **onChanged** : Fonction appelée lorsque l'état change.
-- **activeColor** : Couleur de la case à cocher lorsqu'elle est cochée.
+Pour associer un texte à la case à cocher, on utilise généralement le widget `CheckboxListTile` :
+
+```dart
+CheckboxListTile(
+  title: Text('Accepter les conditions'),
+  value: _isChecked,
+  onChanged: (bool? value) {
+    setState(() {
+      _isChecked = value!;
+    });
+  },
+)
+```
+
+### Liste dynamique de Checkbox
+
+Pour gérer une liste de cases à cocher, on peut utiliser une liste de booléens :
+
+```dart
+List<bool> _checked = [false, false, false];
+List<String> _options = ['Option 1', 'Option 2', 'Option 3'];
+
+ListView.builder(
+  itemCount: _options.length,
+  itemBuilder: (context, index) {
+    return CheckboxListTile(
+      title: Text(_options[index]),
+      value: _checked[index],
+      onChanged: (bool? value) {
+        setState(() {
+          _checked[index] = value!;
+        });
+      },
+    );
+  },
+)
+```
+
+### Personnalisation avancée
+
+Vous pouvez personnaliser la couleur, la forme et l'apparence de la Checkbox :
 
 ```dart
 Checkbox(
   value: _isChecked,
-  activeColor: Colors.green,
-  onChanged: (bool value) {
+  onChanged: (bool? value) {
     setState(() {
-      _isChecked = value;
+      _isChecked = value!;
     });
   },
+  activeColor: Colors.green,
+  checkColor: Colors.white,
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(6),
+  ),
 )
 ```
 
-### Résumé
+### Astuces
+- Utilisez `CheckboxListTile` pour une meilleure accessibilité et une interface plus propre.
+- Pour des formulaires complexes, combinez Checkbox avec `Form` et `FormField`.
+- Pensez à gérer l'état de vos Checkbox dans un `StatefulWidget` ou avec un gestionnaire d'état (Provider, Riverpod, etc.).
 
-- Le widget `Checkbox` est utilisé pour créer des cases à cocher interactives.
-- Il peut être personnalisé avec des couleurs et des actions.
+### Résumé
+- Le widget `Checkbox` permet de créer des cases à cocher simples ou multiples.
+- Il est hautement personnalisable et s'intègre facilement dans les formulaires Flutter.
 
 ## Carousel Slider dans Flutter
 
