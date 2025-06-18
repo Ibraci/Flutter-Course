@@ -228,6 +228,8 @@ Checkbox(
 
 Le `Carousel Slider` est un widget qui permet de créer un carrousel d'images ou de widgets. Il est idéal pour afficher des diaporamas ou des galeries d'images.
 
+<!-- [Need to install caroussel slider]() -->
+
 ### Exemple de base
 
 ```dart
