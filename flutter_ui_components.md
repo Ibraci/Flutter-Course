@@ -4,7 +4,6 @@ Dans ce chapitre, nous allons explorer les différents composants d'interface ut
 
 Sommaire
 
-```
 - Icône
 - Expanded
 - Case à cocher
@@ -16,7 +15,6 @@ Sommaire
 - ListTile
 - Onglets
 - Graphiques
-```
 
 ## Classe Icon dans Flutter
 
