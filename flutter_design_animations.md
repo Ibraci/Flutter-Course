@@ -4,27 +4,44 @@ Dans cette section, vous apprendrez à utiliser ces widgets pour concevoir des b
 
 ## Personnalisation des polices dans Flutter
 
-La personnalisation des polices dans Flutter est essentielle pour créer une identité visuelle unique pour votre application. Vous pouvez utiliser des polices personnalisées, modifier la taille et le style des textes, et intégrer des polices Google.
+La personnalisation des polices dans Flutter est essentielle pour créer une identité visuelle unique pour votre application. Une bonne typographie peut améliorer considérablement l'expérience utilisateur et la lisibilité de votre application.
+
+### Pourquoi personnaliser les polices ?
+
+- **Identité visuelle** : Les polices personnalisées aident à établir une identité de marque cohérente
+- **Lisibilité** : Certaines polices sont plus lisibles que d'autres selon le contexte
+- **Performance** : Les polices optimisées peuvent améliorer les performances de l'application
+- **Accessibilité** : Des polices bien choisies améliorent l'accessibilité de l'application
 
 ### Utilisation de polices personnalisées
 
-Pour utiliser une police personnalisée, vous devez d'abord l'ajouter à votre projet. Voici comment procéder :
+#### 1. Ajout de polices personnalisées
 
-1. **Ajoutez la police à votre projet** : Placez le fichier de police (par exemple, `Roboto.ttf`) dans un dossier `fonts` à la racine de votre projet.
+Pour utiliser une police personnalisée, suivez ces étapes :
 
-2. **Déclarez la police dans `pubspec.yaml`** :
+1. **Créez un dossier `fonts`** à la racine de votre projet
+2. **Ajoutez vos fichiers de police** (par exemple, `Roboto.ttf`, `Montserrat.ttf`)
+3. **Déclarez les polices dans `pubspec.yaml`** :
 
 ```yaml
 flutter:
   fonts:
     - family: Roboto
       fonts:
-        - asset: fonts/Roboto.ttf
+        - asset: fonts/Roboto-Regular.ttf
+        - asset: fonts/Roboto-Bold.ttf
+          weight: 700
+        - asset: fonts/Roboto-Light.ttf
+          weight: 300
+    - family: Montserrat
+      fonts:
+        - asset: fonts/Montserrat-Regular.ttf
 ```
 
-3. **Utilisez la police dans votre application** :
+#### 2. Utilisation dans l'application
 
 ```dart
+// Utilisation simple
 Text(
   'Ceci est un texte avec une police personnalisée',
   style: TextStyle(
@@ -33,24 +50,48 @@ Text(
     fontWeight: FontWeight.bold,
   ),
 )
+
+// Utilisation avec différents styles
+Text(
+  'Texte en gras',
+  style: TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.bold,
+  ),
+)
+
+Text(
+  'Texte léger',
+  style: TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w300,
+  ),
+)
 ```
 
 ### Utilisation des polices Google
 
-Flutter permet d'utiliser facilement les polices Google. Voici comment les intégrer :
+Les polices Google offrent une grande variété de styles et sont facilement intégrables dans Flutter.
 
-1. **Ajoutez la dépendance `google_fonts` dans `pubspec.yaml`** :
+#### 1. Configuration
+
+1. **Ajoutez la dépendance** dans `pubspec.yaml` :
 
 ```yaml
 dependencies:
   google_fonts: ^2.1.0
 ```
 
-2. **Utilisez la police Google dans votre application** :
+2. **Importez le package** :
 
 ```dart
 import 'package:google_fonts/google_fonts.dart';
+```
 
+#### 2. Exemples d'utilisation
+
+```dart
+// Utilisation simple
 Text(
   'Ceci est un texte avec une police Google',
   style: GoogleFonts.lato(
@@ -58,56 +99,358 @@ Text(
     fontWeight: FontWeight.bold,
   ),
 )
+
+// Combinaison de styles
+Text(
+  'Titre principal',
+  style: GoogleFonts.poppins(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: Colors.blue,
+    letterSpacing: 1.2,
+  ),
+)
+
+// Utilisation avec des variantes
+Text(
+  'Texte italique',
+  style: GoogleFonts.roboto(
+    fontSize: 16,
+    fontStyle: FontStyle.italic,
+  ),
+)
+```
+
+### Bonnes pratiques
+
+1. **Limitez le nombre de polices** : Utilisez 2-3 polices maximum pour maintenir la cohérence
+2. **Hiérarchie typographique** : Créez une hiérarchie claire avec différentes tailles et poids
+3. **Performance** : Préchargez les polices si nécessaire pour éviter les flashs de texte
+4. **Accessibilité** : Assurez-vous que les polices choisies sont lisibles pour tous les utilisateurs
+
+### Exemple complet
+
+```dart
+class TypographyExample extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // Titre principal
+        Text(
+          'Bienvenue',
+          style: GoogleFonts.poppins(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
+        ),
+        
+        // Sous-titre
+        Text(
+          'Sous-titre',
+          style: GoogleFonts.poppins(
+            fontSize: 24,
+            fontWeight: FontWeight.w500,
+            color: Colors.grey[700],
+          ),
+        ),
+        
+        // Corps de texte
+        Text(
+          'Ceci est un exemple de texte avec différentes polices et styles.',
+          style: GoogleFonts.roboto(
+            fontSize: 16,
+            height: 1.5,
+          ),
+        ),
+        
+        // Texte en gras
+        Text(
+          'Texte important',
+          style: GoogleFonts.roboto(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.red,
+          ),
+        ),
+      ],
+    );
+  }
+}
 ```
 
 ### Résumé
 
-- La personnalisation des polices permet de créer une identité visuelle unique.
-- Vous pouvez utiliser des polices personnalisées et des polices Google pour améliorer le design de votre application.
+- La personnalisation des polices permet de créer une identité visuelle unique
+- Vous pouvez utiliser des polices personnalisées et des polices Google
+- Suivez les bonnes pratiques pour une typographie efficace
+- Testez vos choix de polices sur différents appareils et tailles d'écran
 
 ## Flutter - Thèmes
 
-Les thèmes dans Flutter permettent de définir un style cohérent pour toute l'application. Cela facilite la maintenance et l'évolution du design.
+Les thèmes dans Flutter sont un outil puissant pour maintenir une cohérence visuelle dans votre application. Ils permettent de définir des styles globaux pour les couleurs, les textes, les boutons et autres éléments de l'interface utilisateur.
 
-### Création d'un thème
+### Pourquoi utiliser des thèmes ?
 
-Voici comment créer un thème de base dans Flutter :
+- **Cohérence** : Assure une apparence uniforme dans toute l'application
+- **Maintenance** : Facilite les modifications globales du design
+- **Accessibilité** : Permet de gérer facilement les thèmes sombres et clairs
+- **Réutilisabilité** : Les styles définis peuvent être réutilisés dans toute l'application
+
+### Création d'un thème de base
+
+#### 1. Définition du thème principal
 
 ```dart
 MaterialApp(
   theme: ThemeData(
+    // Couleurs principales
     primarySwatch: Colors.blue,
+    primaryColor: Colors.blue,
+    accentColor: Colors.blueAccent,
+    
+    // Mode clair/sombre
     brightness: Brightness.light,
+    
+    // Thème des textes
     textTheme: TextTheme(
-      headline1: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      bodyText1: TextStyle(fontSize: 16),
+      headline1: TextStyle(
+        fontSize: 32,
+        fontWeight: FontWeight.bold,
+        color: Colors.black,
+      ),
+      headline2: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w600,
+        color: Colors.black87,
+      ),
+      bodyText1: TextStyle(
+        fontSize: 16,
+        color: Colors.black54,
+      ),
+      button: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: Colors.white,
+      ),
+    ),
+    
+    // Thème des boutons
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        primary: Colors.blue,
+        onPrimary: Colors.white,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    ),
+    
+    // Thème des cartes
+    cardTheme: CardTheme(
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
     ),
   ),
   home: MyHomePage(),
 )
 ```
 
-### Utilisation du thème
-
-Vous pouvez utiliser le thème dans vos widgets :
+#### 2. Thème sombre
 
 ```dart
+MaterialApp(
+  theme: ThemeData.light(), // Thème clair par défaut
+  darkTheme: ThemeData.dark().copyWith(
+    primaryColor: Colors.blue,
+    scaffoldBackgroundColor: Colors.grey[900],
+    cardColor: Colors.grey[800],
+    textTheme: TextTheme(
+      headline1: TextStyle(
+        fontSize: 32,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+      bodyText1: TextStyle(
+        fontSize: 16,
+        color: Colors.white70,
+      ),
+    ),
+  ),
+  themeMode: ThemeMode.system, // Suit les préférences système
+  home: MyHomePage(),
+)
+```
+
+### Utilisation du thème
+
+#### 1. Accès aux styles du thème
+
+```dart
+// Dans un widget
 Text(
-  'Ceci est un titre',
+  'Titre',
   style: Theme.of(context).textTheme.headline1,
 )
+
+// Utilisation des couleurs
+Container(
+  color: Theme.of(context).primaryColor,
+  child: Text(
+    'Contenu',
+    style: TextStyle(
+      color: Theme.of(context).colorScheme.onPrimary,
+    ),
+  ),
+)
+```
+
+#### 2. Création de widgets personnalisés avec le thème
+
+```dart
+class CustomButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+
+  const CustomButton({
+    Key? key,
+    required this.text,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: theme.elevatedButtonTheme.style,
+      child: Text(
+        text,
+        style: theme.textTheme.button,
+      ),
+    );
+  }
+}
+```
+
+### Bonnes pratiques
+
+1. **Organisation** : Créez un fichier séparé pour votre thème
+2. **Cohérence** : Utilisez des constantes pour les valeurs réutilisées
+3. **Flexibilité** : Permettez la personnalisation des thèmes
+4. **Accessibilité** : Assurez un bon contraste dans les thèmes clairs et sombres
+
+### Exemple complet
+
+```dart
+// theme/app_theme.dart
+class AppTheme {
+  static ThemeData get lightTheme {
+    return ThemeData(
+      primarySwatch: Colors.blue,
+      brightness: Brightness.light,
+      // ... autres configurations
+    );
+  }
+
+  static ThemeData get darkTheme {
+    return ThemeData(
+      primarySwatch: Colors.blue,
+      brightness: Brightness.dark,
+      // ... autres configurations
+    );
+  }
+}
+
+// main.dart
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
+      home: HomePage(),
+    );
+  }
+}
+
+// home_page.dart
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Accueil',
+          style: theme.textTheme.headline1,
+        ),
+      ),
+      body: Column(
+        children: [
+          Card(
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: Text(
+                'Contenu de la carte',
+                style: theme.textTheme.bodyText1,
+              ),
+            ),
+          ),
+          CustomButton(
+            text: 'Cliquez-moi',
+            onPressed: () {
+              // Action
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
 ```
 
 ### Résumé
 
-- Les thèmes permettent de définir un style cohérent pour toute l'application.
-- Ils facilitent la maintenance et l'évolution du design.
+- Les thèmes permettent de maintenir une cohérence visuelle dans l'application
+- Ils facilitent la maintenance et les modifications globales
+- Ils supportent les modes clair et sombre
+- Ils peuvent être personnalisés selon les besoins de l'application
 
 ## Flutter - Texte à taille automatique
 
-Le texte à taille automatique permet d'ajuster la taille du texte en fonction de l'espace disponible, ce qui est utile pour les interfaces responsives.
+Le texte à taille automatique est une fonctionnalité essentielle pour créer des interfaces responsives qui s'adaptent à différentes tailles d'écran. Il permet d'ajuster automatiquement la taille du texte en fonction de l'espace disponible, évitant ainsi les problèmes de débordement ou de texte trop petit.
 
-### Exemple de base
+### Pourquoi utiliser le texte à taille automatique ?
+
+- **Responsive Design** : S'adapte automatiquement à différentes tailles d'écran
+- **Lisibilité** : Maintient une taille de texte lisible dans tous les cas
+- **Flexibilité** : Fonctionne avec différents types de conteneurs
+- **Performance** : Optimise l'espace disponible
+
+### Installation
+
+Pour utiliser le texte à taille automatique, ajoutez la dépendance `auto_size_text` dans votre `pubspec.yaml` :
+
+```yaml
+dependencies:
+  auto_size_text: ^3.0.0
+```
+
+### Utilisation de base
+
+#### 1. Texte simple
 
 ```dart
 AutoSizeText(
@@ -118,10 +461,181 @@ AutoSizeText(
 )
 ```
 
+#### 2. Texte avec contraintes
+
+```dart
+Container(
+  width: 200,
+  height: 100,
+  child: AutoSizeText(
+    'Ce texte s\'ajustera pour tenir dans ce conteneur',
+    style: TextStyle(fontSize: 20),
+    minFontSize: 12,
+    maxLines: 2,
+    overflow: TextOverflow.ellipsis,
+  ),
+)
+```
+
+### Options avancées
+
+#### 1. Texte avec groupe
+
+```dart
+AutoSizeGroup(
+  children: [
+    AutoSizeText(
+      'Premier texte',
+      group: group,
+      style: TextStyle(fontSize: 20),
+    ),
+    AutoSizeText(
+      'Deuxième texte',
+      group: group,
+      style: TextStyle(fontSize: 20),
+    ),
+  ],
+)
+```
+
+#### 2. Texte avec animation
+
+```dart
+AutoSizeText(
+  'Texte animé',
+  style: TextStyle(fontSize: 20),
+  minFontSize: 12,
+  maxFontSize: 20,
+  animation: AutoSizeTextAnimation(
+    duration: Duration(milliseconds: 300),
+    curve: Curves.easeInOut,
+  ),
+)
+```
+
+### Cas d'utilisation courants
+
+#### 1. Titres de cartes
+
+```dart
+Card(
+  child: Padding(
+    padding: EdgeInsets.all(16),
+    child: Column(
+      children: [
+        AutoSizeText(
+          'Titre de la carte qui peut être long',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+          maxLines: 2,
+          minFontSize: 16,
+        ),
+        // Contenu de la carte
+      ],
+    ),
+  ),
+)
+```
+
+#### 2. Boutons avec texte long
+
+```dart
+ElevatedButton(
+  onPressed: () {},
+  child: AutoSizeText(
+    'Texte long du bouton qui doit s\'adapter',
+    style: TextStyle(fontSize: 16),
+    minFontSize: 12,
+    maxLines: 1,
+  ),
+)
+```
+
+### Bonnes pratiques
+
+1. **Définissez des limites** : Utilisez `minFontSize` et `maxFontSize` pour éviter les tailles extrêmes
+2. **Gérez le débordement** : Utilisez `overflow` pour gérer les textes trop longs
+3. **Optimisez les performances** : Limitez le nombre de lignes avec `maxLines`
+4. **Testez sur différents appareils** : Vérifiez le comportement sur différentes tailles d'écran
+
+### Exemple complet
+
+```dart
+class ResponsiveTextExample extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // Titre principal
+        Container(
+          width: double.infinity,
+          padding: EdgeInsets.all(16),
+          child: AutoSizeText(
+            'Titre principal qui peut être très long et doit s\'adapter',
+            style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+            ),
+            minFontSize: 20,
+            maxLines: 2,
+            textAlign: TextAlign.center,
+          ),
+        ),
+
+        // Sous-titre
+        Container(
+          width: 300,
+          child: AutoSizeText(
+            'Sous-titre avec une largeur fixe',
+            style: TextStyle(
+              fontSize: 24,
+              color: Colors.grey[700],
+            ),
+            minFontSize: 16,
+            maxLines: 1,
+          ),
+        ),
+
+        // Texte dans une carte
+        Card(
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              children: [
+                AutoSizeText(
+                  'Contenu de la carte qui peut être très long et doit s\'adapter à l\'espace disponible',
+                  style: TextStyle(fontSize: 16),
+                  minFontSize: 12,
+                  maxLines: 3,
+                ),
+                SizedBox(height: 8),
+                AutoSizeText(
+                  'Texte secondaire',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey[600],
+                  ),
+                  minFontSize: 10,
+                  maxLines: 1,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+```
+
 ### Résumé
 
-- Le texte à taille automatique s'ajuste en fonction de l'espace disponible.
-- Il est idéal pour les interfaces responsives.
+- Le texte à taille automatique est essentiel pour les interfaces responsives
+- Il s'adapte automatiquement à l'espace disponible
+- Il offre de nombreuses options de personnalisation
+- Il améliore l'expérience utilisateur sur différents appareils
 
 ## Flutter - Texte squelette
 
