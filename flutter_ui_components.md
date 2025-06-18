@@ -2,6 +2,22 @@
 
 Dans ce chapitre, nous allons explorer les différents composants d'interface utilisateur (UI) disponibles dans Flutter. Ces composants sont essentiels pour créer des applications mobiles interactives et visuellement attrayantes.
 
+Sommaire
+
+```
+- Icône
+- Expanded
+- Case à cocher
+- Carrousel d’images
+- Indicateurs de progression circulaire et linéaire
+- Boîte de dialogue d’alerte
+- Dialogue
+- Vidéos
+- ListTile
+- Onglets
+- Graphiques
+```
+
 ## Classe Icon dans Flutter
 
 La classe `Icon` dans Flutter est utilisée pour afficher des icônes graphiques, généralement issues de la police Material Icons ou d'autres polices d'icônes. Les icônes sont évolutives, personnalisables et couramment utilisées dans les boutons, les barres de navigation, et plus encore.
@@ -200,11 +216,13 @@ Checkbox(
 ```
 
 ### Astuces
+
 - Utilisez `CheckboxListTile` pour une meilleure accessibilité et une interface plus propre.
 - Pour des formulaires complexes, combinez Checkbox avec `Form` et `FormField`.
 - Pensez à gérer l'état de vos Checkbox dans un `StatefulWidget` ou avec un gestionnaire d'état (Provider, Riverpod, etc.).
 
 ### Résumé
+
 - Le widget `Checkbox` permet de créer des cases à cocher simples ou multiples.
 - Il est hautement personnalisable et s'intègre facilement dans les formulaires Flutter.
 
